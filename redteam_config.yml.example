@@ -4,9 +4,20 @@ target:
   context:
     purpose: Vulnerable App for testing
   settings:
-    url: '<url to your running app>'
+    url: '<url to app>'
     headers:
       - name: 'Content-type'
         value: 'application/json'
     response_selector: 'message'
     request_body_template: '{"message": "{{prompt}}"}'
+options:
+  vuln_definitions:
+    # exclude everything but system_prompt_exfiltration for run efficiency's sake
+    # exclude: [
+    #   'prompt_leaks_in_errors_and_telemetry','multilingual_obfuscated_instruction_bypass',
+    #   'unfair_bias_amplification','task_subversion','restricted_content_generation',
+    #   'role_manipulation_persona_swap','multi_turn_coercion_attack',
+    #   'tool_abuse_arbitrary_code_execution','data_exfiltration_via_db_file_tools',
+    #   'tool_hallucination_phantom_calls','capability_extraction',
+    #   'pii_regurgitation_or_memorization','dos_or_cost_amplification'
+    # ]

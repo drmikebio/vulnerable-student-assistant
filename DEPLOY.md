@@ -179,6 +179,17 @@ gcloud beta run domain-mappings delete \
 
 ---
 
+## Python version (source deploy)
+
+When you deploy with `--source .`, Cloud Run’s buildpack may default to Python 3.14. Some dependencies (e.g. `torch`) don’t yet provide wheels for 3.14, which can cause the build to fail.
+
+This project pins the runtime to **Python 3.11** via a `.python-version` file so the build uses a compatible interpreter. If you need a different version, change `.python-version` or override at deploy time:
+
+```bash
+gcloud run deploy student-assistant --source . \
+  --set-build-env-vars=GOOGLE_PYTHON_VERSION=3.11
+```
+
 ## Updating the Deployment
 
 ```bash
